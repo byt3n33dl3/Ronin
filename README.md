@@ -12,7 +12,7 @@
 ```shell
 git clone https://github.com/pxcs/ronin.git
 cd ronin
-python3 ronin.py
+python2 ronin.py
 ```
 [here!](https://github.com/pxcs/ronin/) --> this tool / software is provided for educational and research purpose only. The author of this project are no way responsible for any misuse of **ronin**.<br>
 
