@@ -1,5 +1,5 @@
-[![Downloads](https://img.shields.io/badge/Download-Windows%20Build-blue.svg)](https://github.com/pxcs/ronin/releases)
-[![License](https://img.shields.io/badge/License-Artistic%20v2%2B-blue.svg)](https://github.com/github.com/pxcs/ronin/assets/LICENSE)
+[![Downloads](https://img.shields.io/badge/Download-Windows%20Build-blue.svg)](https://github.com/pxcs/Ronin/releases)
+[![License](https://img.shields.io/badge/License-Artistic%20v2%2B-blue.svg)](https://github.com/github.com/pxcs/Ronin/assets/LICENSE)
 # Ronin the shogun
 <br>
 
@@ -10,11 +10,11 @@
 # Installation
 
 ```shell
-git clone https://github.com/pxcs/ronin.git
+git clone https://github.com/pxcs/Ronin.git
 cd ronin
 python2 ronin.py
 ```
-[here!](https://github.com/pxcs/ronin/) --> this tool / software is provided for educational and research purpose only. The author of this project are no way responsible for any misuse of **ronin**.<br>
+[here!](https://github.com/pxcs/Ronin/) --> this tool / software is provided for educational and research purpose only. The author of this project are no way responsible for any misuse of **ronin**.<br>
 
 > - [What is XSS](https://www.owasp.org/index.php/Cross-site_Scripting_(XSS))
 
